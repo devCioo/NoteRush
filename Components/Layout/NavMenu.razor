@@ -1,0 +1,37 @@
+﻿<MudDrawer @bind-Open="Open" Elevation="1" Variant="DrawerVariant.Mini" OpenMiniOnHover>
+	<MudDrawerHeader LinkToIndex Class="justify-center align-center pa-0">
+		@if (Open)
+		{
+			<MudStack Row AlignItems="AlignItems.Center">
+				<MudIcon Icon="@Icons.Material.Filled.MusicNote" Size="Size.Large" Color="Color.Primary" />
+				<MudText Typo="Typo.h5" Color="Color.Primary">NoteRush</MudText>
+				<MudIcon Icon="@Icons.Material.Filled.Speed" Size="Size.Large" Color="Color.Primary" />
+			</MudStack>
+		}
+		else
+		{
+			<MudIcon Icon="@Icons.Material.Filled.MusicNote" Size="Size.Large" Color="Color.Primary" />
+		}
+	</MudDrawerHeader>
+	<MudNavMenu Bordered>
+		<MudNavLink Icon="@Icons.Material.Filled.CalendarMonth" Href="daily-song" IconColor="Color.Primary">Daily song</MudNavLink>
+		<MudNavLink Icon="@Icons.Material.Filled.Timer" Href="noterush" IconColor="Color.Primary">NoteRush</MudNavLink>
+		<MudNavLink Icon="@Icons.Material.Filled.PieChart" Href="slices" IconColor="Color.Primary">Slices</MudNavLink>
+		<MudNavLink Icon="@Icons.Material.Filled.Leaderboard" Href="leaderboards" IconColor="Color.Primary">Leaderboards</MudNavLink>
+	</MudNavMenu>
+</MudDrawer>
+
+@code {
+	[Parameter]
+	public bool Open { get; set; }
+}
+
+<style>
+	.mud-nav-link {
+		height: 56px;
+	}
+
+	.mud-nav-link-text {
+		text-wrap: nowrap;
+	}
+</style>
