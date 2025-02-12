@@ -1,13 +1,15 @@
-﻿@inherits LayoutComponentBase
+﻿@using BitzArt.Blazor.Cookies
+@inherits LayoutComponentBase
+@inject ICookieService CookieService
 
-<MudThemeProvider />
+<MudThemeProvider @bind-IsDarkMode="IsDarkMode" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <NavBar OnMenuToggle="() => Open = !Open" />
-    <NavMenu Open="Open" />
+    <NavBar OnMenuToggle="() => NavMenuOpen = !NavMenuOpen" OnThemeToggle="ChangeTheme" IsDarkMode="IsDarkMode" />
+    <NavMenu Open="NavMenuOpen" />
     <MudMainContent>
         <MudContainer>
             @Body
@@ -23,5 +25,24 @@
 </MudAlert>
 
 @code {
-    private bool Open { get; set; }
+    private bool IsDarkMode { get; set; }
+    private bool NavMenuOpen { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await GetThemePreference();
+    }
+
+    private async Task ChangeTheme(bool isDarkMode)
+    {
+        IsDarkMode = isDarkMode;
+        await CookieService.SetAsync("DarkMode", IsDarkMode.ToString(), new DateTimeOffset(DateTime.MaxValue));
+    }
+
+    private async Task GetThemePreference()
+    {
+        var cookie = await CookieService.GetAsync("DarkMode");
+        IsDarkMode = cookie != null ? bool.Parse(cookie.Value) : false; 
+    }
 }

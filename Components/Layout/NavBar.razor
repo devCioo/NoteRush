@@ -1,8 +1,23 @@
 ﻿<MudAppBar>
 	<MudIconButton Icon="@Icons.Material.Filled.Menu" OnClick="() => OnMenuToggle.InvokeAsync()" Color="Color.Inherit" />
+	<MudSpacer />
+	<MudToggleIconButton Toggled="IsDarkMode" ToggledChanged="ChangeTheme" Icon="@Icons.Material.Filled.DarkMode" ToggledIcon="@Icons.Material.Filled.LightMode"
+		Color="Color.Inherit" ToggledColor="Color.Inherit" />
 </MudAppBar>
 
 @code {
 	[Parameter]
 	public EventCallback OnMenuToggle { get; set; }
+
+	[Parameter]
+	public EventCallback<bool> OnThemeToggle { get; set; }
+
+	[Parameter]
+	public bool IsDarkMode { get; set; }
+
+	private async Task ChangeTheme()
+	{
+		IsDarkMode = !IsDarkMode;
+		await OnThemeToggle.InvokeAsync(IsDarkMode);
+	}
 }

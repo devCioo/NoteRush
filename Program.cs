@@ -1,3 +1,4 @@
+using BitzArt.Blazor.Cookies;
 using MudBlazor.Services;
 using NoteRush.Components;
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddMudServices();
+builder.AddBlazorCookies();
 
 var app = builder.Build();
 
