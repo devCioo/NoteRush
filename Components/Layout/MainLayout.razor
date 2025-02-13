@@ -2,7 +2,7 @@
 @inherits LayoutComponentBase
 @inject ICookieService CookieService
 
-<MudThemeProvider @bind-IsDarkMode="IsDarkMode" />
+<MudThemeProvider @bind-IsDarkMode="IsDarkMode" Theme="Theme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -25,6 +25,26 @@
 </MudAlert>
 
 @code {
+    private MudTheme Theme = new MudTheme
+    {
+        Typography = new Typography
+        {
+            Default = new DefaultTypography
+            {
+                FontFamily = new[] { "Quicksand" },
+                FontWeight = "700"
+            },
+            H1 = new H1Typography
+            {
+                FontWeight = "700"
+            },
+            H5 = new H5Typography
+            {
+                FontWeight = "700"
+            },
+        }
+    };
+
     private bool IsDarkMode { get; set; }
     private bool NavMenuOpen { get; set; }
 
@@ -43,6 +63,6 @@
     private async Task GetThemePreference()
     {
         var cookie = await CookieService.GetAsync("DarkMode");
-        IsDarkMode = cookie != null ? bool.Parse(cookie.Value) : false; 
+        IsDarkMode = cookie != null ? bool.Parse(cookie.Value) : false;
     }
 }
