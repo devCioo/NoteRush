@@ -8,7 +8,23 @@
 
   <ItemGroup>
     <PackageReference Include="BitzArt.Blazor.Cookies.Server" Version="1.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.2" />
     <PackageReference Include="MudBlazor" Version="8.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Resource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
