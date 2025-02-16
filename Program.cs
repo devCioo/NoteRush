@@ -8,8 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddMudServices();
-builder.AddBlazorCookies();
 builder.Services.AddLocalization();
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+	var supportedCultures = builder.Configuration.GetSection("Localization:SupportedCultures").Get<string[]>();
+    options.SetDefaultCulture(supportedCultures[0])
+        .AddSupportedCultures(supportedCultures)
+        .AddSupportedUICultures(supportedCultures);
+});
+builder.AddBlazorCookies();
 
 var app = builder.Build();
 
@@ -21,18 +28,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-string[] supportedCultures = [ "en-US", "pl-PL" ];
-var localizationOptions = new RequestLocalizationOptions()
-    .SetDefaultCulture(supportedCultures[0])
-    .AddSupportedCultures(supportedCultures)
-    .AddSupportedUICultures(supportedCultures);
-app.UseRequestLocalization(localizationOptions);
-
+app.UseRequestLocalization();
 app.UseHttpsRedirection();
-
-
 app.UseAntiforgery();
-
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

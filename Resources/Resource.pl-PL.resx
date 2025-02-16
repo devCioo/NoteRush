@@ -120,6 +120,9 @@
   <data name="DailySong" xml:space="preserve">
     <value>Dzienna piosenka</value>
   </data>
+  <data name="HelloWorld" xml:space="preserve">
+    <value>Witaj, świecie!</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Strona główna</value>
   </data>
@@ -133,6 +136,9 @@
     <value>Kawałki</value>
   </data>
   <data name="UnhandledError" xml:space="preserve">
-    <value>Wystąpił nieobsługiwany błąd</value>
+    <value>Wystąpił nieobsługiwany błąd.</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Witaj w twojej nowej aplikacji.</value>
   </data>
 </root>

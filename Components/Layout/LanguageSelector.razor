@@ -1,0 +1,65 @@
+﻿@using System.Globalization
+@using BitzArt.Blazor.Cookies
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@inject ICookieService CookieService
+@inject IServiceProvider ServiceProvider
+@inject NavigationManager Navigation
+
+<MudMenu AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopLeft">
+	<ActivatorContent>
+		<MudIconButton Icon="@CurrentCultureIcon" />
+	</ActivatorContent>
+	<ChildContent>
+		@foreach (var culture in SupportedCultures)
+		{
+			<MudMenuItem OnClick="@(() => ChangeLanguage(culture))">
+				<MudStack Row AlignItems="AlignItems.Center">
+					<MudImage Src="@($"images/flags/normal/{culture.Name}.svg")" Height="20" Class="border" />
+					<MudText Color="Color.Inherit">@culture.NativeName</MudText>
+				</MudStack>
+			</MudMenuItem>
+		}
+	</ChildContent>
+</MudMenu>
+
+@code {
+	private readonly string ICONS_PATH = Path.Combine("wwwroot", "images", "flags", "mini");
+	private IEnumerable<CultureInfo> SupportedCultures { get; set; }
+	private string CurrentCultureIcon { get; set; } = string.Empty;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+		SupportedCultures = ServiceProvider.GetService<IOptions<RequestLocalizationOptions>>().Value.SupportedCultures;
+		CurrentCultureIcon = await GetCurrentCultureIconAsync();
+	}
+
+	private async Task ChangeLanguage(CultureInfo cultureInfo)
+	{
+		if (CultureInfo.CurrentCulture != cultureInfo)
+		{
+			var requestCulture = new RequestCulture(cultureInfo, cultureInfo);
+			var cookieValue = CookieRequestCultureProvider.MakeCookieValue(requestCulture);
+			await CookieService.SetAsync(CookieRequestCultureProvider.DefaultCookieName, cookieValue, new DateTimeOffset(DateTime.MaxValue));
+			Navigation.Refresh(true);
+		}
+	}
+
+	private async Task<string> GetCurrentCultureIconAsync()
+	{
+		var iconPath = Path.Combine(ICONS_PATH, $"{CultureInfo.CurrentCulture.Name}.svg");
+
+		if (File.Exists(iconPath))
+		{
+			return await File.ReadAllTextAsync(iconPath);
+		}
+		return string.Empty;
+	}
+}
+
+<style>
+	.mud-icon-root {
+		border-radius: 50%;
+	}
+</style>

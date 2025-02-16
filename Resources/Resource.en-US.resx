@@ -120,6 +120,9 @@
   <data name="DailySong" xml:space="preserve">
     <value>Daily song</value>
   </data>
+  <data name="HelloWorld" xml:space="preserve">
+    <value>Hello, world!</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -133,6 +136,9 @@
     <value>Slices</value>
   </data>
   <data name="UnhandledError" xml:space="preserve">
-    <value>An unhandled error has occured</value>
+    <value>An unhandled error has occurred.</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome to your new application.</value>
   </data>
 </root>

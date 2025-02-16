@@ -70,6 +70,15 @@ namespace NoteRush.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hello, world!.
+        /// </summary>
+        public static string HelloWorld {
+            get {
+                return ResourceManager.GetString("HelloWorld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -106,11 +115,20 @@ namespace NoteRush.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An unhandled error has occured.
+        ///   Looks up a localized string similar to An unhandled error has occurred..
         /// </summary>
         public static string UnhandledError {
             get {
                 return ResourceManager.GetString("UnhandledError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to your new application..
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
     }

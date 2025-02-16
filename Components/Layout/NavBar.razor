@@ -1,8 +1,11 @@
 ﻿<MudAppBar>
 	<MudIconButton Icon="@Icons.Material.Filled.Menu" OnClick="() => OnMenuToggle.InvokeAsync()" Color="Color.Inherit" />
 	<MudSpacer />
-	<MudToggleIconButton Toggled="IsDarkMode" ToggledChanged="ChangeTheme" Icon="@Icons.Material.Filled.DarkMode" ToggledIcon="@Icons.Material.Filled.LightMode"
-		Color="Color.Inherit" ToggledColor="Color.Inherit" />
+	<MudStack Row>
+		<LanguageSelector />
+		<MudToggleIconButton Toggled="IsDarkMode" ToggledChanged="ChangeTheme" Icon="@Icons.Material.Filled.DarkMode" ToggledIcon="@Icons.Material.Filled.LightMode"
+			Color="Color.Inherit" ToggledColor="Color.Inherit" />
+	</MudStack>
 </MudAppBar>
 
 @code {

@@ -19,8 +19,8 @@
 
 <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Square id="blazor-error-ui">
     <MudStack Row Spacing="1">
-        <MudText>An unhandled error has occured.</MudText>
-        <MudLink Href="">Reload</MudLink>
+        <MudText>@Localizer["UnhandledError"]</MudText>
+        <MudLink Href="">@Localizer["Refresh"]</MudLink>
     </MudStack>
 </MudAlert>
 
@@ -29,6 +29,10 @@
     {
         Typography = new Typography
         {
+            Body1 = new Body1Typography
+            {
+                FontWeight = "700"
+            },
             Default = new DefaultTypography
             {
                 FontFamily = new[] { "Quicksand" },
