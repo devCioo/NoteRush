@@ -11,15 +11,15 @@
 		<MudIconButton Icon="@CurrentCultureIcon" />
 	</ActivatorContent>
 	<ChildContent>
-		@foreach (var culture in SupportedCultures)
-		{
-			<MudMenuItem OnClick="@(() => ChangeLanguage(culture))">
-				<MudStack Row AlignItems="AlignItems.Center">
-					<MudImage Src="@($"images/flags/normal/{culture.Name}.svg")" Height="20" Class="border" />
-					<MudText Color="Color.Inherit">@culture.NativeName</MudText>
-				</MudStack>
-			</MudMenuItem>
-		}
+	@foreach (var culture in SupportedCultures)
+	{
+		<MudMenuItem OnClick="@(() => ChangeLanguage(culture))">
+			<MudStack Row AlignItems="AlignItems.Center">
+				<MudImage Src="@($"images/flags/normal/{culture.Name}.svg")" Height="20" Class="border" />
+				<MudText Color="Color.Inherit">@culture.NativeName</MudText>
+			</MudStack>
+		</MudMenuItem>
+	}
 	</ChildContent>
 </MudMenu>
 

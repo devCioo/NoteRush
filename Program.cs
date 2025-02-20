@@ -1,6 +1,7 @@
 using BitzArt.Blazor.Cookies;
 using MudBlazor.Services;
 using NoteRush.Components;
+using NoteRush.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddMudServices();
 builder.Services.AddLocalization();
+builder.Services.AddDbContext<NoteRushDbContext>();
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
 	var supportedCultures = builder.Configuration.GetSection("Localization:SupportedCultures").Get<string[]>();
