@@ -8,6 +8,7 @@ namespace NoteRush.Data
 		protected readonly IConfiguration _configuration;
 
 		public DbSet<User> Users { get; set; }
+		public DbSet<Role> Roles { get; set; }
 
 		public NoteRushDbContext(IConfiguration configuration)
 		{
@@ -25,19 +26,33 @@ namespace NoteRush.Data
 			base.OnModelCreating(modelBuilder);
 
 			modelBuilder.Entity<User>()
-				.HasKey(x => x.Id);
+				.HasKey(u => u.Id);
 
 			modelBuilder.Entity<User>()
-				.Property(x => x.Email)
+				.Property(u => u.Email)
 				.IsRequired();
 
 			modelBuilder.Entity<User>()
-				.Property(x => x.Login)
+				.Property(u => u.Login)
 				.IsRequired()
 				.HasMaxLength(32);
 
 			modelBuilder.Entity<User>()
-				.Property(x => x.Password)
+				.Property(u => u.Password)
+				.IsRequired();
+
+			modelBuilder.Entity<User>()
+				.HasOne(u => u.Role)
+				.WithMany(r => r.Users)
+				.HasForeignKey(u => u.RoleId)
+				.IsRequired()
+				.OnDelete(DeleteBehavior.Restrict);
+
+			modelBuilder.Entity<Role>()
+				.HasKey(r => r.Id);
+
+			modelBuilder.Entity<Role>()
+				.Property(r => r.Name)
 				.IsRequired();
 		}
 	}
