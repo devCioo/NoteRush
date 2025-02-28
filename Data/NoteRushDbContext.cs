@@ -54,6 +54,10 @@ namespace NoteRush.Data
 			modelBuilder.Entity<Role>()
 				.Property(r => r.Name)
 				.IsRequired();
+
+			modelBuilder.Entity<Role>().HasData(
+				new Role { Id = 1, Name = "Administrator" },
+				new Role { Id = 2, Name = "User" });
 		}
 	}
 }
