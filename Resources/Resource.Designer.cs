@@ -70,6 +70,15 @@ namespace NoteRush.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forgot password?.
+        /// </summary>
+        public static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello, world!.
         /// </summary>
         public static string HelloWorld {
@@ -97,11 +106,65 @@ namespace NoteRush.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string LoginAlt {
+            get {
+                return ResourceManager.GetString("LoginAlt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t have an account?.
+        /// </summary>
+        public static string NoAccount {
+            get {
+                return ResourceManager.GetString("NoAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string Refresh {
             get {
                 return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        public static string RegisterAlt {
+            get {
+                return ResourceManager.GetString("RegisterAlt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remember me.
+        /// </summary>
+        public static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
             }
         }
         
@@ -120,6 +183,15 @@ namespace NoteRush.Resources {
         public static string UnhandledError {
             get {
                 return ResourceManager.GetString("UnhandledError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
             }
         }
         

@@ -120,6 +120,9 @@
   <data name="DailySong" xml:space="preserve">
     <value>Daily song</value>
   </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
   <data name="HelloWorld" xml:space="preserve">
     <value>Hello, world!</value>
   </data>
@@ -129,14 +132,35 @@
   <data name="Leaderboards" xml:space="preserve">
     <value>Leaderboards</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginAlt" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="NoAccount" xml:space="preserve">
+    <value>Don't have an account?</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="RegisterAlt" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
   </data>
   <data name="Slices" xml:space="preserve">
     <value>Slices</value>
   </data>
   <data name="UnhandledError" xml:space="preserve">
     <value>An unhandled error has occurred.</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome to your new application.</value>

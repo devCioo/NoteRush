@@ -1,20 +1,13 @@
 ﻿@using BitzArt.Blazor.Cookies
 @inherits LayoutComponentBase
-@inject ICookieService CookieService
 
-<MudThemeProvider @bind-IsDarkMode="IsDarkMode" Theme="Theme" />
+<MudThemeProvider Theme="Theme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<MudLayout>
-    <NavBar OnMenuToggle="() => NavMenuOpen = !NavMenuOpen" OnThemeToggle="ChangeTheme" IsDarkMode="IsDarkMode" />
-    <NavMenu Open="NavMenuOpen" />
-    <MudMainContent>
-        <MudContainer>
-            @Body
-        </MudContainer>
-    </MudMainContent>
+<MudLayout Class="d-flex justify-center align-center background">
+    @Body
 </MudLayout>
 
 <MudAlert Severity="Severity.Error" Variant="Variant.Filled" Square id="blazor-error-ui">
@@ -29,57 +22,39 @@
     {
         PaletteLight = new PaletteLight
         {
-            Surface = Colors.Shades.White  
-        },
-        PaletteDark = new PaletteDark
-        {
-            Surface = Colors.Shades.White
+            Primary = Colors.Shades.White,
+            TextPrimary = Colors.Shades.White
         },
         Typography = new Typography
         {
             Body1 = new Body1Typography
             {
-                FontWeight = "700"
+                FontWeight = "700",
+                LineHeight = "1.43"
             },
             Default = new DefaultTypography
             {
                 FontFamily = new[] { "Quicksand" },
-                FontWeight = "700"
+                FontSize = "1rem",
+                FontWeight = "500"
             },
-            H1 = new H1Typography
+            H3 = new H3Typography
             {
                 FontWeight = "700"
             },
-            H5 = new H5Typography
+            H6 = new H6Typography
             {
                 FontWeight = "700"
-            },
-        }
+            }
+        },
     };
-
-    private bool IsDarkMode { get; set; }
-    private bool NavMenuOpen { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        await GetThemePreference();
-    }
-
-    private async Task ChangeTheme(bool isDarkMode)
-    {
-        IsDarkMode = isDarkMode;
-        await CookieService.SetAsync("DarkMode", IsDarkMode.ToString(), new DateTimeOffset(DateTime.MaxValue));
-    }
-
-    private async Task GetThemePreference()
-    {
-        var cookie = await CookieService.GetAsync("DarkMode");
-        IsDarkMode = cookie != null ? bool.Parse(cookie.Value) : false;
-    }
 }
 
 <style>
+    html, body {
+        height: 100%;
+    }
+
     #blazor-error-ui {
         color-scheme: light only;
         background: lightyellow;
@@ -99,5 +74,10 @@
         position: absolute;
         right: 0.75rem;
         top: 0.5rem;
+    }
+
+    .background {
+        background: url('images/backgrounds/background.jpeg');
+        background-size: cover;
     }
 </style>

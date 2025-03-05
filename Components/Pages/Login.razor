@@ -1,0 +1,55 @@
+﻿@page "/login"
+@using NoteRush.Components.Layout
+@layout BlankLayout
+
+<MudPaper Width="450px" Height="450px" Elevation="3" Class="pa-6 mud-transparent panel-background">
+	<MudForm @ref="form">
+		<MudStack Justify="Justify.Center">
+			<MudText Align="Align.Center" Typo="Typo.h3" Color="Color.Primary" Class="mb-2">@Localizer["Login"]</MudText>
+			<MudTextField @bind-Value="Username" Label="@Localizer["Username"]" AdornmentIcon="@Icons.Material.Filled.Person" Adornment="Adornment.End" 
+				Variant="Variant.Outlined" Typo="Typo.h6" AdornmentColor="Color.Primary" Class="mx-4" />
+			<MudTextField @bind-Value="Password" Label="@Localizer["Password"]" AdornmentIcon="@Icons.Material.Filled.Lock" InputType="InputType.Password" 
+				Adornment="Adornment.End" Typo="Typo.h6" Variant="Variant.Outlined" AdornmentColor="Color.Primary" Class="mx-4" />
+			<MudStack Row Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
+				<MudCheckBox @bind-Value="RememberMe" Color="Color.Primary">
+					<MudText Typo="Typo.inherit">@Localizer["RememberMe"]</MudText>
+				</MudCheckBox>
+				<MudLink Href="forgot-password" Underline="Underline.None" Class="me-4">@Localizer["ForgotPassword"]</MudLink>
+			</MudStack>
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mx-4 rounded-pill">
+				<MudText Typo="Typo.h6" Color="Color.Dark">@Localizer["LoginAlt"]</MudText>
+			</MudButton>
+			<MudStack Row Justify="Justify.Center" AlignItems="AlignItems.Center" Spacing="1">
+				<MudText Typo="Typo.inherit" Color="Color.Primary">@Localizer["NoAccount"]</MudText>
+				<MudLink Href="register" Underline="Underline.None" Typo="Typo.body1" Class="hoverable">@Localizer["RegisterAlt"]</MudLink>
+			</MudStack>
+		</MudStack>
+	</MudForm>
+</MudPaper>
+
+@code {
+	private MudForm form;
+	private string Username { get; set; }
+	private string Password { get; set; }
+	private bool RememberMe { get; set; }
+}
+
+<style>
+	.panel-background {
+		backdrop-filter: blur(10px);
+	}
+
+	.mud-input-outlined-border {
+		border-radius: 9999px !important;
+		border-color: var(--mud-palette-primary-text);
+	}
+
+	.mud-input-label {
+		font-weight: 700 !important;
+		color: var(--mud-palette-primary-text) !important;
+	}
+
+	.mud-input > input.mud-input-root-outlined.mud-input-root-adorned-end, div.mud-input-slot.mud-input-root-outlined.mud-input-root-adorned-end {
+		padding-inline-start: 24px;
+	}
+</style>

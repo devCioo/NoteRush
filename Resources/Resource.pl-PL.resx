@@ -120,6 +120,9 @@
   <data name="DailySong" xml:space="preserve">
     <value>Dzienna piosenka</value>
   </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Zapomniałeś hasła?</value>
+  </data>
   <data name="HelloWorld" xml:space="preserve">
     <value>Witaj, świecie!</value>
   </data>
@@ -129,14 +132,35 @@
   <data name="Leaderboards" xml:space="preserve">
     <value>Rankingi</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Logowanie</value>
+  </data>
+  <data name="LoginAlt" xml:space="preserve">
+    <value>Zaloguj</value>
+  </data>
+  <data name="NoAccount" xml:space="preserve">
+    <value>Nie masz konta?</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Hasło</value>
+  </data>
   <data name="Refresh" xml:space="preserve">
     <value>Odśwież</value>
+  </data>
+  <data name="RegisterAlt" xml:space="preserve">
+    <value>Zarejestruj się</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Zapamiętaj mnie</value>
   </data>
   <data name="Slices" xml:space="preserve">
     <value>Kawałki</value>
   </data>
   <data name="UnhandledError" xml:space="preserve">
     <value>Wystąpił nieobsługiwany błąd.</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nazwa użytkownika</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Witaj w twojej nowej aplikacji.</value>
