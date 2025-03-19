@@ -129,6 +129,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value>Invalid username or password</value>
+  </data>
   <data name="Leaderboards" xml:space="preserve">
     <value>Leaderboards</value>
   </data>

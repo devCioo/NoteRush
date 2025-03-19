@@ -33,7 +33,7 @@ namespace NoteRush.Data
 				.IsRequired();
 
 			modelBuilder.Entity<User>()
-				.Property(u => u.Login)
+				.Property(u => u.Username)
 				.IsRequired()
 				.HasMaxLength(32);
 

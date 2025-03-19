@@ -1,22 +1,32 @@
 ﻿@page "/login"
+@using BitzArt.Blazor.Auth
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using NoteRush.Authentication
 @using NoteRush.Components.Layout
+@using NoteRush.Data
+@using NoteRush.Data.Models
 @layout BlankLayout
+@inject IDbContextFactory<NoteRushDbContext> DbFactory
+@inject IUserService<SignInPayload> UserService
+@inject NavigationManager NavigationManager
 
 <MudPaper Width="450px" Height="450px" Elevation="3" Class="pa-6 mud-transparent panel-background">
 	<MudForm @ref="form">
 		<MudStack Justify="Justify.Center">
 			<MudText Align="Align.Center" Typo="Typo.h3" Color="Color.Primary" Class="mb-2">@Localizer["Login"]</MudText>
 			<MudTextField @bind-Value="Username" Label="@Localizer["Username"]" AdornmentIcon="@Icons.Material.Filled.Person" Adornment="Adornment.End" 
-				Variant="Variant.Outlined" Typo="Typo.h6" AdornmentColor="Color.Primary" Class="mx-4" />
+			Variant="Variant.Outlined" Typo="Typo.h6" AdornmentColor="Color.Primary" Class="mx-4" />
 			<MudTextField @bind-Value="Password" Label="@Localizer["Password"]" AdornmentIcon="@Icons.Material.Filled.Lock" InputType="InputType.Password" 
-				Adornment="Adornment.End" Typo="Typo.h6" Variant="Variant.Outlined" AdornmentColor="Color.Primary" Class="mx-4" />
+			Adornment="Adornment.End" Typo="Typo.h6" Variant="Variant.Outlined" AdornmentColor="Color.Primary" Class="mx-4" />
 			<MudStack Row Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
 				<MudCheckBox @bind-Value="RememberMe" Color="Color.Primary">
 					<MudText Typo="Typo.inherit">@Localizer["RememberMe"]</MudText>
 				</MudCheckBox>
 				<MudLink Href="forgot-password" Underline="Underline.None" Class="me-4">@Localizer["ForgotPassword"]</MudLink>
 			</MudStack>
-			<MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mx-4 rounded-pill">
+			<MudText Align="Align.Center" Color="Color.Error">@errorMessage</MudText>
+			<MudButton OnClick="SignInAsync" Variant="Variant.Filled" Color="Color.Primary" Class="mx-4 rounded-pill">
 				<MudText Typo="Typo.h6" Color="Color.Dark">@Localizer["LoginAlt"]</MudText>
 			</MudButton>
 			<MudStack Row Justify="Justify.Center" AlignItems="AlignItems.Center" Spacing="1">
@@ -32,6 +42,31 @@
 	private string Username { get; set; }
 	private string Password { get; set; }
 	private bool RememberMe { get; set; }
+	private string errorMessage;
+
+	private async Task SignInAsync()
+	{
+		await form.Validate();
+
+		if (form.IsValid)
+		{
+			using var dbContext = await DbFactory.CreateDbContextAsync();
+			var hasher = new PasswordHasher<User>();
+
+			var user = await dbContext.Users
+				.Include(u => u.Role)
+				.FirstOrDefaultAsync(u => u.Username == Username);
+			if (user == null || hasher.VerifyHashedPassword(user, user.Password, Password) == PasswordVerificationResult.Failed)
+			{
+				errorMessage = Localizer["InvalidCredentials"];
+				return;
+			}
+
+			var signInPayload = new SignInPayload(user.Username, user.Role.Name);
+			var authenticationResult = await UserService.SignInAsync(signInPayload);
+			NavigationManager.NavigateTo("/", true);
+		}
+	}
 }
 
 <style>

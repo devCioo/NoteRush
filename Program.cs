@@ -1,7 +1,9 @@
+using BitzArt.Blazor.Auth.Server;
 using BitzArt.Blazor.Cookies;
 using MudBlazor.Services;
 using NoteRush.Components;
 using NoteRush.Data;
+using NoteRush.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddMudServices();
 builder.Services.AddLocalization();
-builder.Services.AddDbContext<NoteRushDbContext>();
+builder.Services.AddDbContextFactory<NoteRushDbContext>();
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
 	var supportedCultures = builder.Configuration.GetSection("Localization:SupportedCultures").Get<string[]>();
@@ -19,6 +21,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
         .AddSupportedUICultures(supportedCultures);
 });
 builder.AddBlazorCookies();
+builder.Services.AddScoped<JwtService>();
+builder.AddBlazorAuth<NoteRushAuthenticationService>();
 
 var app = builder.Build();
 
@@ -36,5 +40,6 @@ app.UseAntiforgery();
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+app.MapAuthEndpoints();
 
 app.Run();
