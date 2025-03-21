@@ -21,7 +21,6 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
         .AddSupportedUICultures(supportedCultures);
 });
 builder.AddBlazorCookies();
-builder.Services.AddScoped<JwtService>();
 builder.AddBlazorAuth<NoteRushAuthenticationService>();
 
 var app = builder.Build();

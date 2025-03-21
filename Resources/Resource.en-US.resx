@@ -144,6 +144,9 @@
   <data name="NoAccount" xml:space="preserve">
     <value>Don't have an account?</value>
   </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>Not logged in</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>

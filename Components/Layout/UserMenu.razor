@@ -1,0 +1,50 @@
+﻿@using BitzArt.Blazor.Auth
+@using Microsoft.AspNetCore.Components.Authorization
+@using NoteRush.Authentication
+@inject IUserService<SignInPayload> UserService;
+@inject NavigationManager NavigationManager
+
+<MudMenu Icon="@Icons.Material.Filled.Person" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopRight" Color="Color.Inherit" ListClass="pa-0">
+	<ActivatorContent>
+		<AuthorizeView>
+			<Authorized>
+				<MudBadge Overlap Bordered Color="Color.Success" BadgeClass="mud-border-primary">
+					<MudAvatar Color="Color.Warning">@context.User.Identity.Name.ToUpper().First()</MudAvatar>
+				</MudBadge>
+			</Authorized>
+			<NotAuthorized>
+				<MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Inherit" />
+			</NotAuthorized>
+		</AuthorizeView>
+	</ActivatorContent>
+	<ChildContent>
+		<MudPaper MinWidth="300px" Elevation="0" Class="pa-2">
+			<AuthorizeView>
+				<Authorized>
+					<MudStack Row AlignItems="AlignItems.Center" Class="pa-2">
+						<MudAvatar Color="Color.Warning">@context.User.Identity.Name.ToUpper().First()</MudAvatar>
+						<MudText>@context.User.Identity.Name</MudText>
+					</MudStack>
+					<MudDivider />
+					<MudMenuItem Icon="@Icons.Material.Filled.Logout" Label="@Localizer["Logout"]" OnClick="SignOutAsync" IconColor="Color.Primary" />
+				</Authorized>
+				<NotAuthorized>
+					<MudStack Row AlignItems="AlignItems.Center" Class="pa-2">
+						<MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Large" />
+						<MudText>@Localizer["NotLoggedIn"]</MudText>
+					</MudStack>
+					<MudDivider />
+					<MudMenuItem Icon="@Icons.Material.Filled.Login" Label="@Localizer["LoginAlt"]" Href="login" IconColor="Color.Primary" />
+				</NotAuthorized>
+			</AuthorizeView>
+		</MudPaper>
+	</ChildContent>
+</MudMenu>
+
+@code {
+	private async Task SignOutAsync()
+	{
+		await UserService.SignOutAsync();
+		NavigationManager.NavigateTo(NavigationManager.Uri, true);
+	}
+}
