@@ -16,9 +16,9 @@
 		<MudStack Justify="Justify.Center">
 			<MudText Align="Align.Center" Typo="Typo.h3" Color="Color.Primary" Class="mb-2">@Localizer["Login"]</MudText>
 			<MudTextField @bind-Value="Username" Label="@Localizer["Username"]" AdornmentIcon="@Icons.Material.Filled.Person" Adornment="Adornment.End" 
-			Variant="Variant.Outlined" Typo="Typo.h6" AdornmentColor="Color.Primary" Class="mx-4" />
+				Variant="Variant.Outlined" Typo="Typo.h6" AdornmentColor="Color.Primary" Class="mx-4" />
 			<MudTextField @bind-Value="Password" Label="@Localizer["Password"]" AdornmentIcon="@Icons.Material.Filled.Lock" InputType="InputType.Password" 
-			Adornment="Adornment.End" Typo="Typo.h6" Variant="Variant.Outlined" AdornmentColor="Color.Primary" Class="mx-4" />
+				Adornment="Adornment.End" Typo="Typo.h6" Variant="Variant.Outlined" AdornmentColor="Color.Primary" Class="mx-4" />
 			<MudStack Row Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
 				<MudCheckBox @bind-Value="RememberMe" Color="Color.Primary">
 					<MudText Typo="Typo.inherit">@Localizer["RememberMe"]</MudText>

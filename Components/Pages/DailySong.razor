@@ -1,0 +1,47 @@
+﻿@page "/daily-song"
+
+<PageTitle>@Localizer["DailySong"]</PageTitle>
+
+<MudGrid Justify="Justify.Center" Spacing="2" Class="mt-4">
+	@foreach (var guess in Guesses)
+	{
+		<MudItem xs="6">
+			<MudField Variant="Variant.Outlined">@guess</MudField>
+		</MudItem>
+		<MudFlexBreak />
+	}
+	<MudItem xs="9" Class="mt-20">
+		<MudProgressLinear Value="5" Size="Size.Large" Rounded Color="Color.Primary" />
+	</MudItem>
+	<MudItem xs="8" Class="d-flex justify-center my-4">
+		<MudIconButton Icon="@Icons.Material.Filled.PlayArrow" OnClick="Play" Size="Size.Large" Variant="Variant.Filled" Color="Color.Success" Class="rounded-circle" />
+	</MudItem>
+	<MudItem xs="6">
+		<MudTextField @bind-Value="Title" AdornmentIcon="@Icons.Material.Filled.Search" Adornment="Adornment.Start" Variant="Variant.Outlined"  />
+	</MudItem>
+	<MudFlexBreak />
+	<MudItem xs="6" Class="d-flex justify-space-between">
+		<MudButton OnClick="Skip" Variant="Variant.Filled">@Localizer["Skip"]</MudButton>
+		<MudButton OnClick="Submit" Variant="Variant.Filled" Color="Color.Success">@Localizer["Submit"]</MudButton>
+	</MudItem>
+</MudGrid>
+
+@code {
+	private string[] Guesses { get; set; } = new string[6];
+	private string Title { get; set; }
+
+	private void Play()
+	{
+		
+	}
+
+	private void Skip()
+	{
+
+	}
+
+	private void Submit()
+	{
+
+	}
+}

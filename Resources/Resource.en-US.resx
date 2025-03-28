@@ -141,6 +141,9 @@
   <data name="LoginAlt" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
   <data name="NoAccount" xml:space="preserve">
     <value>Don't have an account?</value>
   </data>
@@ -159,8 +162,14 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me</value>
   </data>
+  <data name="Skip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
   <data name="Slices" xml:space="preserve">
     <value>Slices</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
   </data>
   <data name="UnhandledError" xml:space="preserve">
     <value>An unhandled error has occurred.</value>
